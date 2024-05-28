@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penilaian Kelulusan</title>
+    <style>
+        body {
+            background-color: white; /* Background Putih */
+            color: black; /* Warna Teks Hitam */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #8B0000; /* Border Merah Tua */
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        }
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #8B0000; /* Border Merah Tua */
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent input background */
+            color: black;
+            text-align: center; /* Angka berada di tengah-tengah */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8B0000; /* Background tombol Merah Tua */
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a52a2a; /* Background tombol saat hover */
+        }
+        #hasil {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        #catatan {
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        #copyright {
+            margin-top: 50px;
+            font-size: 0.8em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Penilaian Kelulusan</h1>
+    <form id="nilaiForm">
+        <label for="nilai">Masukkan Nilai:</label>
+        <input type="number" id="nilai" name="nilai" required>
+        <button type="submit">Cek Kelulusan</button>
+    </form>
+    <p id="hasil"></p>
+    <p id="catatan"></p>
+
+    <script>
+        document.getElementById('nilaiForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nilaiInput = document.getElementById('nilai');
+            const nilai = parseInt(nilaiInput.value);
+            const hasil = document.getElementById('hasil');
+            const catatan = document.getElementById('catatan');
+            
+            if (nilai >= 75) {
+                hasil.textContent = "Lulus";
+                hasil.style.color = "green";
+                catatan.textContent = "";
+            } else {
+                hasil.textContent = "Tidak Lulus";
+                hasil.style.color = "red";
+                catatan.textContent = "Belajar Lagi!";
+            }
+
+            // Reset input field
+            nilaiInput.value = '';
+            // Set focus back to input field for new input
+            nilaiInput.focus();
+        });
+    </script>
+
+    <p id="copyright">© 2024 Penilaian Kelulusan. Semua hak dilindungi.</p>
+</body>
+</html>
